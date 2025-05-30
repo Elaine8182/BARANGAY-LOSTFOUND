@@ -135,9 +135,16 @@ LOGIN_REDIRECT_URL = '/report/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'no-reply@lostfound.local'
 
+import os
+from pathlib import Path
 
-# Where collectstatic puts the files
-STATIC_ROOT = BASE_DIR / "staticfiles"  # or your preferred folder
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-# URL to use in templates for static files
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # This is the folder where you put your project static files
+]
+
+STATIC_ROOT = BASE_DIR / "staticfiles"  # This is where collectstatic copies everything for deployment
+
