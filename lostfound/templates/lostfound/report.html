@@ -1,0 +1,111 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <div class="row">
+    <div class="col-md-100 mb-4">
+    <div class="card h-100">
+    <title>Report Lost/Found Item</title>
+        <body style="background-image: url('{% static 'images/jjjjj.png' %}'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
+
+</head>
+<body>
+    <div style="text-align: center; margin: 150px 0;">
+    <div class="report-form">
+        <h2>REPORT LOST/FOUND ITEM</h2>
+    
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+    
+            <div class="form-group">
+                <label for="id_title">Name who report:</label>
+                {{ form.title.errors }}
+                {{ form.title }}
+            </div>
+    
+            <div class="form-group">
+                <label for="id_description">Description of lost/found items:</label>
+                {{ form.description.errors }}
+                {{ form.description }}
+            </div>
+    
+            <div class="form-group">
+                <label for="id_location">Location:</label>
+                {{ form.location.errors }}
+                {{ form.location }}
+            </div>
+    
+            <div class="form-group">
+                <label for="id_date">Date:</label>
+                {{ form.date.errors }}
+                {{ form.date }}
+            </div>
+    
+            <div class="form-group">
+                <label for="id_status">Status:</label>
+                {{ form.status.errors }}
+                {{ form.status }}
+            </div>
+    
+
+         <div class="form-group">
+                <label for="id_disposition">:</label>
+              {{ form.disposition.errors }}
+                {{ form.disposition }}
+            </div>
+          
+
+            <div class="form-group">
+                <label for="id_contact_info">Contact Info:</label>
+                {{ form.contact_info.errors }}
+                {{ form.contact_info }}
+            </div>
+    
+            <div class="form-group">
+                <label for="id_image">Image (optional):</label>
+                {{ form.image.errors }}
+                {{ form.image }}
+            </div>
+    
+            <button type="submit">Submit</button>
+        </form>
+    
+        <div class="back-link">
+            <a href="{% url 'home' %}">← Back</a>
+        </div>
+    </div>
+    
+    </body>
+    </html>
+    
+    <style>
+        body {
+            color: yellow;
+        }
+    
+        label {
+            color: yellow;
+            font-weight: bold;
+        }
+    
+        input, textarea, select {
+            color: white;
+            background-color: black;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+    
+        a {
+            color: violet;
+            text-decoration: none;
+        }
+    
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    
+   

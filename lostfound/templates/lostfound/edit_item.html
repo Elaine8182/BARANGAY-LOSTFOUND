@@ -1,0 +1,15 @@
+<!-- lostfound/templates/lostfound/edit_item.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <div style="text-align: center; margin: 150px 0;">
+ <div class="report-form">
+  <h2>Edit Report</h2>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Changes</button>
+  </form>
+  <a href="{% url 'newsfeed' %}">Back to Newsfeed</a>
+{% endblock %}

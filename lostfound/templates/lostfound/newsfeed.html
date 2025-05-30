@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lost & Found Newsfeed</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url("{% static 'images/helene.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: green;
+        }
+
+        .nav-links {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .nav-links a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.73);
+            border-radius: 10px;
+            padding: 20px 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .filters {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .filters select,
+        .filters input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            margin: 0 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .filters button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .item {
+            background: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #007BFF;
+        }
+
+        .item p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        .item-buttons {
+            margin-top: 10px;
+        }
+
+        .item-buttons a {
+            margin-right: 10px;
+            padding: 6px 15px;
+            background: #f0f0f0;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .item-buttons a:hover {
+            background: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="nav-links">
+        <a href="{% url 'home' %}">🏠 Home</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+    Barangay Doña Helene Lost & Found Online System
+</header>
+
+<div class="container">
+    <div class="filters">
+        <form method="get">
+            <select name="status">
+                <option value="">All</option>
+                <option value="Lost" {% if request.GET.status == "Lost" %}selected{% endif %}>Lost</option>
+                <option value="Found" {% if request.GET.status == "Found" %}selected{% endif %}>Found</option>
+            </select>
+            <input type="text" name="q" placeholder="Search..." value="{{ request.GET.q }}">
+            <button type="submit">Apply</button>
+        </form>
+    </div>
+
+    <h2>Lost & Found Newsfeed</h2>
+
+    {% for item in items %}
+    <div class="item">
+        <p><strong>Name who report:</strong> {{ item.title }}</p>
+        <p><strong>Description of lost/found items:</strong> {{ item.description }}</p>
+        <p><strong>Location:</strong> {{ item.location }}</p>
+        <p><strong>Status:</strong> {{ item.status }}</p>
+        <p><strong>Outcomes:</strong> {{ item.disposition}}</p>
+        <p><strong>Date:</strong> {{ item.date|date:"F d, Y" }}</p>
+    {% if item.image %}
+        <img src="{{ item.image.url }}" alt="Item Image" style="max-width: 100%; height: auto; border-radius: 10px; margin-top: 10px;">
+    {% endif %}
+        <div class="item-buttons">
+            {% if item.reported_by == request.user %}
+                <a href="{% url 'edit_item' item.id %}">Edit</a>
+                <a href="{% url 'delete_item' item.id %}">Delete</a>
+                <a href="{% url 'dashboard' %}">🧍 My Dashboard</a>
+                
+
+                
+            {% endif %}
+        </div>
+    </div>
+    {% empty %}
+    <p style="text-align: center;">No items found.</p>
+    {% endfor %}
+</div>
+</body>
+</html>
+

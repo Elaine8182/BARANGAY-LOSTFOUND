@@ -1,0 +1,28 @@
+body {
+    background-image: url('../static/lostfound/helene.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Transparent header */
+.transparent-header {
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.transparent-header nav a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.transparent-header nav a:hover {
+    text-decoration: underline;
+}

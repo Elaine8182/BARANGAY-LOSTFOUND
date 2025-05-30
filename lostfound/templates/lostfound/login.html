@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LOGIN | Lost & Found</title>
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background:rgb(5, 230, 255);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Container */
+        .login-container {
+            background:rgb(255, 255, 255);
+            padding: 40px 35px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 380px;
+        }
+
+        /* Heading */
+        .login-container h2 {
+            margin-bottom: 50px;
+            color:rgb(29, 29, 4);
+            font-size: 28px;
+        }
+
+        /* Form Fields */
+        .login-container label {
+            display: block;
+            margin: 15px 0 5px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        /* Submit Button */
+        .login-container button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #008297;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-container button:hover {
+            background-color: #006b7a;
+        }
+
+        /* Extra Links */
+        .login-container .links {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .login-container .links a {
+            color: #008297;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .login-container .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        
+        <label for="id_username">Username:<input type="text" name="username"><br>
+        {{ form.username }}
+        
+        <label for="id_password">Password:<input type="password" name="password"><br>
+        {{ form.password }}
+        
+        <button type="submit">Login</button>
+    </form>
+
+    <div class="links">
+        <p>Don't have an account? <a href="{% url 'signup' %}">Sign up here</a></p>
+        <p><a href="javascript:history.back()">← Back</a></p>
+    </div>
+</div>
+
+</body>
+</html>
