@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: barangay-lostfound
+    env: python
+    plan: free
+    buildCommand: ""
+    startCommand: gunicorn lostfound_project.wsgi
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: lostfound_project.settings
+      - key: PYTHON_VERSION
+        value: 3.10
