@@ -134,3 +134,10 @@ LOGIN_REDIRECT_URL = '/report/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'no-reply@lostfound.local'
+
+
+# Where collectstatic puts the files
+STATIC_ROOT = BASE_DIR / "staticfiles"  # or your preferred folder
+
+# URL to use in templates for static files
+STATIC_URL = '/static/'
